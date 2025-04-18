@@ -7,12 +7,18 @@ app.use(cors());
 app.use(express.json());
 
 const PORT = 3000;
-const DATA_FILE = './backend_data/data.json';
+const path = require('path');
+const DATA_FILE = path.join(__dirname, '../backend/backend_data/data.json');
 
 // Reads data from the JSON file
 const readData = () => {
-    const rawData = fs.readFileSync(DATA_FILE);
-    return JSON.parse(rawData);
+    try {
+        const rawData = fs.readFileSync(DATA_FILE);
+        return JSON.parse(rawData || "{}");
+    } catch (error) {
+        console.error("❌ Error reading data.json:", error);
+        return { tasks: [], users: [], brainstorm_notes: [] };
+    }
 };
 
 // Writes data to the JSON file
@@ -83,4 +89,28 @@ app.delete('/tasks/:id', (req, res) => {
 // Start the server
 app.listen(PORT, () => {
     console.log(`✅ Server running on http://localhost:${PORT}`);
+});
+
+// POST brainstorm note (create)
+app.post('/brainstorm', (req, res) => {
+    console.log("📥 Incoming body:", req.body); //test
+    const data = readData();
+
+    const newNote = {
+        id: Date.now(),
+        subject: req.body.subject || null,
+        description: req.body.description || "",
+        deadline: req.body.deadline || null,
+        created_at: new Date().toISOString()
+    };
+
+    if (!data.brainstorm_notes) data.brainstorm_notes = [];
+    data.brainstorm_notes.push(newNote);
+    writeData(data);
+
+    console.log("🧠 Note received:", newNote); // test
+
+    // ✅ IMPORTANT: Return valid JSON!
+    res.status(200).json({ message: "Note saved successfully", note: newNote });
+
 });
