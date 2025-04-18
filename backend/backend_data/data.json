@@ -22,7 +22,7 @@
       "id": 1745010167433,
       "title": "Fare esercizi di fisica",
       "deadline": null,
-      "completed": false,
+      "completed": true,
       "type": "task",
       "projectId": null,
       "sessionId": null

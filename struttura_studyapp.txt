@@ -1,0 +1,140 @@
+📚 STUDY APP – STRUTTURA DEL PROGETTO E WORKFLOW COMPLETO
+🔹 1. Punto di partenza – Pagina Brainstorm
+🧠 Funzione:
+
+La pagina Brainstorm (ispirata al metodo Time-Boxing) permette all’utente di scrivere liberamente tutti i compiti, verifiche, progetti o idee da svolgere.
+📦 Output:
+
+Ogni voce viene analizzata e convertita in una di queste entità:
+
+    Task (es. “Fare esercizi di TPSI”)
+
+    Test (es. “Verifica di storia il 22/04”)
+
+    Project (es. “Creare sito portfolio entro maggio”)
+
+Queste entità vengono salvate nel database e poi, al momento giusto, anche nel Google Calendar.
+🔹 2. Gestione dei Test → Retrospective Revision Timetable (Ali Abdaal)
+📌 Quando viene riconosciuto un test (es. "verifica di storia il 22/04"):
+
+    Viene creata un’entità Test:
+
+{
+  "id": 1,
+  "title": "Verifica di storia",
+  "date": "2025-04-22"
+}
+
+Vengono generate automaticamente 3 sessioni di studio, a ritroso dalla data del test:
+
+    {
+      "sessions": [
+        { "id": 101, "test_id": 1, "title": "Ripasso Capitolo 1", "date": "2025-04-20" },
+        { "id": 102, "test_id": 1, "title": "Quiz e ripasso Capitolo 2", "date": "2025-04-21" },
+        { "id": 103, "test_id": 1, "title": "Rilettura e tecniche attive", "date": "2025-04-22" }
+      ]
+    }
+
+    Dopo ogni sessione, viene richiesto un feedback retrospettivo (vedi punto 5).
+
+🔹 3. Gestione dei Progetti
+✏️ Esempio:
+
+Progetto TPSI:
+- Creare backend
+- Scrivere documentazione
+- Fare presentazione orale
+
+📦 Struttura consigliata:
+
+{
+  "projects": [
+    {
+      "id": 1,
+      "title": "TPSI",
+      "deadline": "2025-05-10",
+      "tasks": [
+        { "title": "Scrivere il backend", "completed": false },
+        { "title": "Documentazione PDF", "completed": false },
+        { "title": "Presentazione orale", "completed": false }
+      ]
+    }
+  ]
+}
+
+I task dei progetti vengono inseriti automaticamente nella ToDo list giornaliera.
+🔹 4. Pagina TASKS / TO-DO LIST
+
+    ✅ Mostra task del giorno e della settimana
+
+    📌 Modalità checklist minimale
+
+    🔁 Se una task non viene completata, può essere reschedulata automaticamente
+
+    ⏱ Quando si avvia una sessione di studio, si apre un pomodoro timer stile Forest
+
+🔹 5. Studio con Feedback → Visual Process Mapping (Justin Sung)
+🎯 Durante ogni sessione di studio:
+
+L’utente risponde a domande rapide:
+📌 PRIMA della sessione:
+
+    WHEN: Quando stai studiando? (orario/giorno)
+
+    WHAT: Che metodo/strumento stai usando? (es. Feynman, Quizlet, musica lo-fi)
+
+    WHY: Perché proprio questo? (motivazione)
+
+📌 DOPO la sessione:
+
+    CERTAINTY: Com'è la tua sicurezza sugli argomenti?
+    (slider o opzioni: Definite, Maybe, Not sure, Definitely not)
+
+🔁 Il sistema riprogramma automaticamente una nuova sessione se la sicurezza è bassa (Ali Abdaal method).
+🔹 6. CHAT PAGE – AI Study Coach
+
+Un’intelligenza artificiale allenata a:
+
+    📊 Analizzare le abitudini di studio
+
+    💡 Suggerire metodi alternativi (es. “Hai mai provato la tecnica Feynman?”)
+
+    🎯 Motivare l’utente (“La tua disciplina è migliorata del 12% questa settimana!”)
+
+    🧠 Rispondere a domande (“Come preparo un'interrogazione in poco tempo?”)
+
+🔹 7. STATS PAGE – Sistema motivazionale
+📊 4 Metriche principali:
+Metrica	Descrizione	Note
+Focus	% del tempo speso studiando davvero rispetto a quanto pianificato	Si può chiedere: “Ti sei distratto?”
+Disciplina	Rispetto delle scadenze	Bonus se recuperi task in ritardo
+Efficienza	Quanto è stato utile il tempo speso?	Si basa su autovalutazione post-sessione
+Dedizione	Uso attivo dell’app	Conta solo interazioni significative
+💡 Miglioramenti motivazionali:
+✅ 1. Suggerimenti automatici
+
+    “Il tuo Focus è calato. Prova sessioni da 25 minuti.”
+
+✅ 2. Trend settimanali e badge
+
+    “📈 +15% Efficienza questa settimana – ben fatto!”
+
+✅ 3. Correlazioni con risultati scolastici
+
+Se l’utente inserisce i voti:
+
+    “Hai usato la tecnica Pomodoro → voto alto. Continua così!”
+
+🧠 CONSIDERAZIONI FINALI E PROPOSTE
+Possibile Problema	Soluzione
+Feedback noioso	Slider / emoji rapidi
+Statistiche basse = demotivazione	Mostrare progressi, non punizioni
+Sistema complesso	Mostrare solo il necessario, extra opzionali
+Tentativo di “fregare il sistema”	Correlare feedback soggettivo con dati oggettivi (es. tempo reale)
+
+RELAZIONE TRA I DATI
+Relazione / Esempio
+Task ←→ Project	un task può appartenere a un progetto
+Session ←→ Test	una sessione è sempre legata a un test
+Task ←→ Session	una sessione può essere registrata anche come task, es: "Sessione di ripasso"
+
