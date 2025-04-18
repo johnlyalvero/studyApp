@@ -1,10 +1,26 @@
 const express = require('express');
-const fs = require('fs');
 const cors = require('cors');
+const fs = require('fs');
 
-const app = express();
-app.use(cors());
+const app = express(); // make sure this comes BEFORE using it
+
+const corsOptions = {
+  origin: 'http://localhost:8000',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type']
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
+
+const {
+    createTask,
+    createTest,
+    createSession,
+    createProject,
+    createProjectTask,
+    generateSessionsForTest
+  } = require('./models');
 
 const PORT = 3000;
 const path = require('path');
@@ -52,6 +68,33 @@ app.post('/tasks', (req, res) => {
     writeData(data);
     
     res.json({ message: "Task added successfully!", task: newTask });
+});
+
+// POST /tests
+app.post('/tests', (req, res) => {
+    const data = readData();
+    const test = req.body;
+    data.tests.push(test);
+    writeData(data);
+    res.status(200).json(test);
+  });
+  
+// POST /sessions
+app.post('/sessions', (req, res) => {
+    const data = readData();
+    const session = req.body;
+    data.sessions.push(session);
+    writeData(data);
+    res.status(200).json(session);
+});
+
+// POST /projects
+app.post('/projects', (req, res) => {
+    const data = readData();
+    const project = req.body;
+    data.projects.push(project);
+    writeData(data);
+    res.status(200).json(project);
 });
 
 // PUT task (update)

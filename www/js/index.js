@@ -71,6 +71,45 @@ function initBrainstormLogic() {
 
             const note = parseNote(rawText);
 
+            // Check if the note contains a test
+            const analysis = analyzeBrainstormInput(rawText);
+
+            if (analysis) {
+            const { test, sessions } = analysis;
+
+            // Sava test
+            fetch("http://localhost:3000/tests", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(test)
+            }).then(res => res.json())
+                .then(data => console.log("✅ Test saved:", data));
+
+            // Save sessions
+            sessions.forEach(session => {
+                fetch("http://localhost:3000/sessions", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(session)
+                }).then(res => res.json())
+                .then(data => console.log("✅ Session saved:", data));
+            });
+            }
+
+            // Rileva se c'è un progetto nel testo
+            const project = analyzeProjectInput(rawText);
+            
+            if (project) {
+                console.log("📁 Progetto generato:", project);
+                fetch("http://localhost:3000/projects", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify(project)
+                })
+                  .then(res => res.json())
+                  .then(data => console.log("📁 Progetto salvato:", data));
+            }
+
             fetch("http://localhost:3000/brainstorm", {
                 method: "POST",
                 headers: {
@@ -127,3 +166,53 @@ function parseNote(text) {
         created_at: new Date().toISOString(),
     };
 }
+
+function analyzeBrainstormInput(text) {
+    const testRegex = /(verifica|test)\s+di\s+(\w+).*(\d{1,2}\/\d{1,2}(?:\/\d{2,4})?)/i;
+  
+    const match = text.match(testRegex);
+    if (!match) return null;
+  
+    const [, , subject, date] = match;
+    const parsedDate = parseDate(date);
+    const title = `Verifica di ${subject}`;
+  
+    const test = createTest(subject, title, parsedDate);
+    const sessions = generateSessionsForTest(test.id, title, parsedDate);
+  
+    return { test, sessions };
+}
+
+
+function parseDate(dateStr) {
+    const parts = dateStr.split('/');
+    const day = parseInt(parts[0]);
+    const month = parseInt(parts[1]) - 1;
+    const year = parts[2] ? parseInt(parts[2]) : new Date().getFullYear();
+    return new Date(year, month, day).toISOString().split("T")[0];
+}
+
+function analyzeProjectInput(text) {
+    const projectRegex = /progetto\s+(.+?)(?:\s+entro\s+(\d{1,2}\/\d{1,2}(?:\/\d{2,4})?))?(?::\s*(.+))?$/i;
+  
+    const match = text.match(projectRegex);
+    if (!match) return null;
+    
+    console.log("📥 Input ricevuto:", text);
+    console.log("🧩 Match:", match);
+
+    const rawTitle = match[1].trim();
+    const deadline = match[2] ? parseDate(match[2]) : null;
+    const taskListRaw = match[3];
+  
+    const project = createProject(rawTitle, deadline);
+  
+    if (taskListRaw) {
+      const taskTitles = taskListRaw.split(',').map(t => t.trim()).filter(Boolean);
+      project.tasks = taskTitles.map(title => createProjectTask(title));
+    }
+  
+    return project;
+  }
+  
+  
