@@ -57,18 +57,11 @@ app.get('/tasks', (req, res) => {
 // POST task (create)
 app.post('/tasks', (req, res) => {
     const data = readData();
-    const newTask = {
-        id: Date.now(),
-        title: req.body.title,
-        deadline: req.body.deadline,
-        completed: false
-    };
-
-    data.tasks.push(newTask);
+    const task = req.body;
+    data.tasks.push(task);
     writeData(data);
-    
-    res.json({ message: "Task added successfully!", task: newTask });
-});
+    res.status(200).json(task);
+  });
 
 // POST /tests
 app.post('/tests', (req, res) => {

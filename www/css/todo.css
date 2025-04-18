@@ -1,0 +1,31 @@
+.todo-page {
+    padding: 1rem;
+    font-family: sans-serif;
+  }
+  
+  .task-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .task-list li {
+    padding: 0.5rem;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .task-list li.completed {
+    text-decoration: line-through;
+    color: #888;
+  }
+  
+  .filters {
+    margin-bottom: 1rem;
+  }
+  
+  .filter-btn {
+    margin-right: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    cursor: pointer;
+  }
+  

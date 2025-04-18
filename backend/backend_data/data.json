@@ -1,19 +1,37 @@
 {
-  "tasks": [],
-  "tests": [
+  "tasks": [
     {
-      "id": 1744994968789,
-      "subject": "TPSI",
-      "title": "Verifica di TPSI",
-      "date": "2025-04-03",
-      "note": "",
-      "created_at": "2025-04-18T16:49:28.789Z"
+      "id": 1745010167453,
+      "title": "Compito di matematica per il 20/04",
+      "deadline": null,
+      "completed": false,
+      "type": "task",
+      "projectId": null,
+      "sessionId": null
+    },
+    {
+      "id": 1745010167014,
+      "title": "Studiare letteratura entro 21/04",
+      "deadline": "2025-04-20",
+      "completed": false,
+      "type": "task",
+      "projectId": null,
+      "sessionId": null
+    },
+    {
+      "id": 1745010167433,
+      "title": "Fare esercizi di fisica",
+      "deadline": null,
+      "completed": false,
+      "type": "task",
+      "projectId": null,
+      "sessionId": null
     }
   ],
   "sessions": [
     {
-      "id": 1744994968789,
-      "testId": 1744994968789,
+      "id": 1745010167186,
+      "testId": 1745010167077,
       "title": "Verifica di TPSI - Session 1",
       "date": "2025-03-31",
       "completed": false,
@@ -25,8 +43,8 @@
       }
     },
     {
-      "id": 1744994968789,
-      "testId": 1744994968789,
+      "id": 1745010166917,
+      "testId": 1745010167077,
       "title": "Verifica di TPSI - Session 2",
       "date": "2025-04-01",
       "completed": false,
@@ -38,10 +56,49 @@
       }
     },
     {
-      "id": 1744994968789,
-      "testId": 1744994968789,
+      "id": 1745010167491,
+      "testId": 1745010167077,
       "title": "Verifica di TPSI - Session 3",
       "date": "2025-04-02",
+      "completed": false,
+      "feedback": {
+        "certainty": null,
+        "distraction": null,
+        "effectiveness": null,
+        "notes": ""
+      }
+    },
+    {
+      "id": 1745010166880,
+      "testId": 1745010167329,
+      "title": "Verifica di inglese - Session 2",
+      "date": "2025-03-28",
+      "completed": false,
+      "feedback": {
+        "certainty": null,
+        "distraction": null,
+        "effectiveness": null,
+        "notes": ""
+      }
+    },
+    {
+      "id": 1745010167763,
+      "testId": 1745010167329,
+      "title": "Verifica di inglese - Session 3",
+      "date": "2025-03-29",
+      "completed": false,
+      "feedback": {
+        "certainty": null,
+        "distraction": null,
+        "effectiveness": null,
+        "notes": ""
+      }
+    },
+    {
+      "id": 1745010167307,
+      "testId": 1745010167329,
+      "title": "Verifica di inglese - Session 1",
+      "date": "2025-03-27",
       "completed": false,
       "feedback": {
         "certainty": null,
@@ -53,37 +110,124 @@
   ],
   "projects": [
     {
-      "id": 1744997009183,
-      "title": "Matematica",
-      "deadline": null,
+      "id": 1745010167714,
+      "title": "TPSI",
+      "deadline": "2025-05-09",
       "tasks": [
         {
-          "id": 1744997009183,
-          "title": "esercizi",
+          "id": 1745010166838,
+          "title": "backend",
           "completed": false
         },
         {
-          "id": 1744997009183,
-          "title": "grafici",
+          "id": 1745010166930,
+          "title": "documentazione",
+          "completed": false
+        },
+        {
+          "id": 1745010166952,
+          "title": "presentazione",
+          "completed": false
+        }
+      ]
+    },
+    {
+      "id": 1745010166897,
+      "title": "Filosofia",
+      "deadline": "2025-06-14",
+      "tasks": [
+        {
+          "id": 1745010166961,
+          "title": "tema",
+          "completed": false
+        },
+        {
+          "id": 1745010167031,
+          "title": "approfondimento",
+          "completed": false
+        },
+        {
+          "id": 1745010167221,
+          "title": "ricerca",
           "completed": false
         }
       ]
     }
   ],
+  "tests": [
+    {
+      "id": 1745010167077,
+      "subject": "TPSI",
+      "title": "Verifica di TPSI",
+      "date": "2025-04-03",
+      "note": "",
+      "created_at": "2025-04-18T21:02:46.775Z"
+    },
+    {
+      "id": 1745010167329,
+      "subject": "inglese",
+      "title": "Verifica di inglese",
+      "date": "2025-03-30",
+      "note": "",
+      "created_at": "2025-04-18T21:02:46.775Z"
+    }
+  ],
   "brainstorm_notes": [
     {
-      "id": 1744994968813,
+      "id": 1745010166791,
       "subject": null,
       "description": "Verifica di TPSI il 24/04",
       "deadline": null,
-      "created_at": "2025-04-18T16:49:28.813Z"
+      "created_at": "2025-04-18T21:02:46.791Z"
     },
     {
-      "id": 1744997009204,
+      "id": 1745010166798,
       "subject": null,
-      "description": "Progetto Matematica: esercizi, grafici",
+      "description": "Progetto TPSI entro 10/05: backend, documentazione, presentazione",
+      "deadline": "2025-05-09",
+      "created_at": "2025-04-18T21:02:46.798Z"
+    },
+    {
+      "id": 1745010166800,
+      "subject": null,
+      "description": "Progetto Filosofia entro 15/06: tema, approfondimento, ricerca",
+      "deadline": "2025-06-14",
+      "created_at": "2025-04-18T21:02:46.800Z"
+    },
+    {
+      "id": 1745010166802,
+      "subject": null,
+      "description": "Compito di matematica per il 20/04",
       "deadline": null,
-      "created_at": "2025-04-18T17:23:29.204Z"
+      "created_at": "2025-04-18T21:02:46.802Z"
+    },
+    {
+      "id": 1745010166804,
+      "subject": null,
+      "description": "Fare esercizi di fisica",
+      "deadline": null,
+      "created_at": "2025-04-18T21:02:46.804Z"
+    },
+    {
+      "id": 1745010166806,
+      "subject": "Italiano",
+      "description": "Materia: Italiano - preparare presentazione",
+      "deadline": null,
+      "created_at": "2025-04-18T21:02:46.806Z"
+    },
+    {
+      "id": 1745010166816,
+      "subject": null,
+      "description": "Studiare letteratura entro 21/04",
+      "deadline": "2025-04-20",
+      "created_at": "2025-04-18T21:02:46.816Z"
+    },
+    {
+      "id": 1745010166819,
+      "subject": null,
+      "description": "Test di inglese il 30/04",
+      "deadline": null,
+      "created_at": "2025-04-18T21:02:46.819Z"
     }
   ]
 }
