@@ -1,0 +1,32 @@
+{
+    "users": [
+      {
+        "id": 0,
+        "nome": "Richard Feynman",
+        "stats": {
+          "focus": 95,
+          "discipline": 80,
+          "efficiency": 90,
+          "devotion": 100
+        }
+      },
+      {
+        "id": 1,
+        "nome": "Jim Kwik",
+        "statistiche": {
+          "focus": 90,
+          "discipline": 85,
+          "efficiency": 95,
+          "devotion": 100
+        }
+      }
+    ],
+    "tasks": [
+      {
+        "id": 102,
+        "title": "Svolgere gli esercizi di Fisica",
+        "deadline": "14-03-2025",
+        "completed": false
+      }
+    ]
+  }

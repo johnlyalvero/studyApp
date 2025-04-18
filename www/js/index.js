@@ -19,11 +19,28 @@
 
 // Wait for the deviceready event before using any of Cordova's device APIs.
 // See https://cordova.apache.org/docs/en/latest/cordova/events/events.html#deviceready
-document.addEventListener('deviceready', onDeviceReady, false);
+
+document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
-    // Cordova is now initialized. Have fun!
-
-    console.log('Running cordova-' + cordova.platformId + '@' + cordova.version);
-    document.getElementById('deviceready').classList.add('ready');
+    navigateTo('brainstorm');  // Load the Home page
 }
+
+// Function to navigate to a page
+function navigateTo(page) {
+    fetch(`pages/${page}.html`)  // Load the HTML file of the requested page
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("content").innerHTML = data; // Insert the HTML content into the content div
+        })
+        .catch(error => console.error("Errore nel caricamento della pagina:", error));
+}
+
+// Function to navigate to a page
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("btnBrainstorm").addEventListener("click", () => navigateTo('brainstorm'));
+    document.getElementById("btnTasks").addEventListener("click", () => navigateTo('tasks'));
+    document.getElementById("btnChat").addEventListener("click", () => navigateTo('chat'));
+    document.getElementById("btnHome").addEventListener("click", () => navigateTo('home'));
+    document.getElementById("btnStats").addEventListener("click", () => navigateTo('stats'));
+});
