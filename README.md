@@ -1,3 +1,119 @@
+Perfetto fratello 💻✨  
+Ti guido passo per passo per configurare il computer della scuola e far partire il tuo progetto **StudyApp** in modo pulito.
+
+---
+
+## 🛠️ 1. **Verifica cosa è già installato**
+
+Apri un terminale (PowerShell o CMD) e digita:
+
+```bash
+node -v
+npm -v
+cordova -v
+```
+
+Se ti dice **“command not found”** o qualcosa del genere, allora devi installarli.
+
+---
+
+## 📦 2. **Installa Node.js + npm**
+
+Vai su 👉 [https://nodejs.org](https://nodejs.org) e scarica la **versione LTS**.  
+Durante l’installazione:
+- ✅ Spunta “Add to PATH”
+- ✅ Spunta anche “Install necessary tools” se te lo chiede
+
+---
+
+## 📲 3. **Installa Cordova**
+
+Una volta installato Node, nel terminale digita:
+
+```bash
+npm install -g cordova
+```
+
+Questo renderà `cordova` disponibile ovunque.
+
+---
+
+## 📁 4. **Porta il tuo progetto nella cartella**
+
+Se hai un file `.zip`:
+- Estrailo in una cartella facile da raggiungere, tipo `C:\Users\tuo-nome\Documents\studyApp`
+
+Altrimenti, se usi Git:
+
+```bash
+git clone https://github.com/tuo-progetto.git
+```
+
+---
+
+## ✅ 5. **Installa le dipendenze locali**
+
+Nel terminale, entra nella cartella del progetto:
+
+```bash
+cd C:\Users\tuo-nome\Documents\studyApp
+```
+
+Poi:
+
+```bash
+npm install
+```
+
+_(anche se non hai molte dipendenze, è buona pratica)_
+
+---
+
+## 🌐 6. **Avvia il backend (server.js)**
+
+Se usi `server.js` come backend locale:
+
+```bash
+cd backend
+node server.js
+```
+
+⚠️ Assicurati che esista il file `backend_data/data.json`, anche vuoto!
+
+---
+
+## 📱 7. **Avvia il frontend**
+
+Torna nella cartella principale del progetto e avvia Cordova in modalità browser:
+
+```bash
+cordova platform add browser
+cordova run browser
+```
+
+Se vuoi usare il livereload:
+
+```bash
+cordova run browser --livereload
+```
+
+---
+
+## 🧪 8. **Test finale**
+
+- Apri [http://localhost:8000](http://localhost:8000)
+- Testa la pagina `brainstorm`
+- Verifica i salvataggi nel file `data.json`
+
+---
+
+## 📌 Vuoi che ti prepari uno script `.bat` da usare anche qui?
+
+Così puoi avviare tutto con un doppio clic come sul tuo pc di casa 🔥
+
+Fammi sapere e ti preparo tutto in pochi secondi 😎
+
+-------------------------------------------------------------------------------------------------------------------------------
 📚 STUDY APP – STRUTTURA DEL PROGETTO E WORKFLOW COMPLETO
 🔹 1. Punto di partenza – Pagina Brainstorm
 🧠 Funzione:
